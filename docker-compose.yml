@@ -1,19 +1,19 @@
 services:
   postgres:
     image: postgres:16
-    container_name: complexlab-postgres
+    container_name: bookshelf-postgres
     environment:
-      POSTGRES_DB: complexlab
-      POSTGRES_USER: complexlab_user
-      POSTGRES_PASSWORD: complexlab_pass
+      POSTGRES_DB: bookshelf
+      POSTGRES_USER: bookshelf_user
+      POSTGRES_PASSWORD: bookshelf_pass
     ports:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
     networks:
-      - complexlab-net
+      - bookshelf-net
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U complexlab_user -d complexlab"]
+      test: ["CMD-SHELL", "pg_isready -U bookshelf_user -d bookshelf"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -22,24 +22,24 @@ services:
     build:
       context: .
       dockerfile: web/Dockerfile
-    container_name: complexlab-web
+    container_name: bookshelf-web
     depends_on:
       postgres:
         condition: service_healthy
     ports:
       - "8080:8080"
     networks:
-      - complexlab-net
+      - bookshelf-net
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/complexlab
-      SPRING_DATASOURCE_USERNAME: complexlab_user
-      SPRING_DATASOURCE_PASSWORD: complexlab_pass
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/bookshelf
+      SPRING_DATASOURCE_USERNAME: bookshelf_user
+      SPRING_DATASOURCE_PASSWORD: bookshelf_pass
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_FLYWAY_ENABLED: "true"
       SPRING_FLYWAY_BASELINE_ON_MIGRATE: "true"
 
 networks:
-  complexlab-net:
+  bookshelf-net:
 
 volumes:
   pgdata:

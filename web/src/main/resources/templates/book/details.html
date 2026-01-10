@@ -13,35 +13,35 @@
                     <div class="muted" th:text="${book.author}">Author</div>
                 </div>
                 <div class="actions" th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
-                    <a class="btn secondary" th:href="@{'/admin/books/' + ${book.id} + '/edit'}">Edit</a>
+                    <a class="btn secondary" th:href="@{'/admin/books/' + ${book.id} + '/edit'}">✏️ Редагувати</a>
                     <form th:action="@{'/admin/books/' + ${book.id} + '/delete'}" method="post">
-                        <button class="btn danger" type="submit">Delete</button>
+                        <button class="btn danger" type="submit">🗑️ Видалити</button>
                     </form>
                 </div>
             </div>
             <hr/>
             <p th:if="${book.description}" th:text="${book.description}"></p>
-            <p class="muted" th:if="${book.description == null or #strings.isEmpty(book.description)}">No description.</p>
+            <p class="muted" th:if="${book.description == null or #strings.isEmpty(book.description)}">Опис відсутній</p>
         </div>
 
         <div class="card">
-            <h3 style="margin-top:0;">Comments</h3>
+            <h3 style="margin-top:0;">💬 Коментарі</h3>
 
             <div th:if="${#authentication != null and #authentication.authenticated}">
                 <form th:action="@{'/books/' + ${book.id} + '/comments'}" method="post" class="grid">
-                    <textarea name="commentText" class="input" placeholder="Write a comment..." required></textarea>
-                    <button class="btn" type="submit">Add comment</button>
+                    <textarea name="commentText" class="input" placeholder="Напишіть коментар..." required></textarea>
+                    <button class="btn" type="submit">Додати коментар</button>
                 </form>
                 <hr/>
             </div>
 
             <div class="muted" th:if="${#authentication == null or !#authentication.authenticated}">
-                <a th:href="@{/auth/login}">Login</a> to add comments.
+                <a th:href="@{/auth/login}">Увійдіть</a>, щоб додати коментар.
                 <hr/>
             </div>
 
             <div class="list" th:if="${#lists.isEmpty(comments)}">
-                <p class="muted">No comments yet.</p>
+                <p class="muted">Коментарів ще немає</p>
             </div>
 
             <div class="list" th:if="${!#lists.isEmpty(comments)}">
@@ -59,7 +59,7 @@
     </div>
 
     <div style="margin-top:14px;">
-        <a class="btn secondary" th:href="@{/}">Back</a>
+        <a class="btn secondary" th:href="@{/}">← Назад</a>
     </div>
 </div>
 </body>

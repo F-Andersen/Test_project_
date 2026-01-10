@@ -6,13 +6,13 @@
 
   <parent>
     <groupId>com.example</groupId>
-    <artifactId>complexlab</artifactId>
+    <artifactId>bookshelf</artifactId>
     <version>1.0.0</version>
   </parent>
 
   <artifactId>web</artifactId>
   <packaging>jar</packaging>
-  <name>ComplexLab Web</name>
+  <name>BookShelf Web</name>
 
   <dependencies>
     <dependency>

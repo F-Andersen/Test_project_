@@ -12,10 +12,10 @@
   </parent>
 
   <groupId>com.example</groupId>
-  <artifactId>complexlab</artifactId>
+  <artifactId>bookshelf</artifactId>
   <version>1.0.0</version>
   <packaging>pom</packaging>
-  <name>ComplexLab</name>
+  <name>BookShelf</name>
 
   <modules>
     <module>core</module>

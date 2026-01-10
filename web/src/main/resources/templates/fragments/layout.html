@@ -3,20 +3,20 @@
 <head th:fragment="head(title)">
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title th:text="${title}">ComplexLab</title>
+    <title th:text="${title}">BookShelf</title>
     <link rel="stylesheet" th:href="@{/css/app.css}"/>
 </head>
 <body>
 <div class="container">
     <div class="nav" th:fragment="nav">
     <div class="actions">
-        <a th:href="@{/}"><strong>ComplexLab</strong></a>
+        <a th:href="@{/}"><strong>📚 Фінальне завдання</strong></a>
         <a class="badge" th:href="@{/actuator/health}" target="_blank">health</a>
 
         <a class="btn secondary"
             th:if="${#authentication.authenticated}"
             th:href="@{/books/new}">
-                Add book
+                ➕ Додати
         </a>
 </div>
 
@@ -29,19 +29,19 @@
         <a class="btn secondary"
            th:if="${#authentication == null or !#authentication.authenticated}"
            th:href="@{/auth/login}">
-            Login
+            Вхід
         </a>
 
-        <a class="btn secondary"
+        <a class="btn"
            th:if="${#authentication == null or !#authentication.authenticated}"
            th:href="@{/auth/register}">
-            Register
+            Реєстрація
         </a>
 
         <form th:if="${#authentication != null and #authentication.authenticated}"
               th:action="@{/logout}"
               method="post">
-            <button class="btn secondary" type="submit">Logout</button>
+            <button class="btn secondary" type="submit">Вийти</button>
         </form>
     </div>
 </div>
